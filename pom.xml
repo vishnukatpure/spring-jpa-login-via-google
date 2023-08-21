@@ -5,7 +5,7 @@
 	<groupId>com.spring-mvc-jpa-mysql</groupId>
 	<artifactId>spring-mvc-jpa-mysql-loginViaGoogle</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>1</version>
 	<name>Spring Data JPA Maven Webapp</name>
 
 	<modules>
@@ -177,19 +177,19 @@
 			<artifactId>modelmapper</artifactId>
 			<version>2.3.5</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.2.4</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.google.apis</groupId>
 			<artifactId>google-api-services-plus</artifactId>
 			<version>v1-rev503-1.22.0</version>
 		</dependency>
-		
+
 
 	</dependencies>
 </project>

@@ -40,6 +40,6 @@
 
 <style>
 .social_box google {
-	background-image:../images/google.png
+	background-image: . ./images/google.png
 }
 </style>
