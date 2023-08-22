@@ -5,6 +5,10 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,7 +47,7 @@ public class OAuthLoginController {
 	}
 
 	@RequestMapping(value = "/google/complete")
-	public RedirectView loginViaGoogleComplete(@RequestParam(value = "code", required = false) String code,
+	public ResponseEntity<Void> loginViaGoogleComplete(@RequestParam(value = "code", required = false) String code,
 			@RequestParam(value = "state", required = false, defaultValue = "") String state,
 			HttpServletRequest request) throws IOException {
 
@@ -52,7 +56,9 @@ public class OAuthLoginController {
 			socialUser = socialUserService.saveUserAndSocialUser(socialUser);
 			socialUserService.authenticateUser(socialUser.getUser());
 		}
-		return null;
+		BodyBuilder bb = ResponseEntity.status(HttpStatus.TEMPORARY_REDIRECT);
+		bb.header(HttpHeaders.LOCATION, "/spring-jpa-login-via-google/home");
+		return bb.build();
 	}
 
 }

@@ -15,23 +15,21 @@
 		<table>
 			<tr>
 				<td>UserName:</td>
-				<td><input type='text' name='username' value='admin'></td>
+				<td><input type='text' name='username' value='admin@demo.in'></td>
 			</tr>
 			<tr>
 				<td>Password:</td>
-				<td><input type='password' name='password' value="admin@123" /></td>
+				<td><input type='password' name='password' value="d#demo9" /></td>
 			</tr>
 			<tr>
 				<td colspan='2'><input name="submit" type="submit"
 					value="submit" /></td>
 			</tr>
 		</table>
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
 	</form>
 
 	<form>
-		<a href="oauth-login/google/initiate" class="social_box google"> <span
+		<a href="oauth-login/google/initiate" class="social_box_google"> <span
 			class="icon"><i class="fa fa-google-plus"></i></span> <span
 			class="icon_title">Login via Google</span>
 		</a>
@@ -39,7 +37,7 @@
 </body>
 
 <style>
-.social_box google {
-	background-image: . ./images/google.png
+.social_box_google {
+	background-image: ../images/google.png
 }
 </style>

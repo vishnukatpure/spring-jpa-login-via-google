@@ -1,4 +1,4 @@
-package com.dev.oauth.seccurity;
+package com.dev.oauth.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;

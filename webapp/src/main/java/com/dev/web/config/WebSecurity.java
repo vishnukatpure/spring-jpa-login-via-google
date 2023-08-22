@@ -14,7 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 @EnableGlobalAuthentication
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
@@ -27,8 +27,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder authenticationMgr) throws Exception {
 		authenticationMgr.jdbcAuthentication().dataSource(dataSource)
-				.usersByUsernameQuery("select username, password, enabled  from users where username=?")
-				.authoritiesByUsernameQuery("select username, authority from authorities where username=?")
+				.usersByUsernameQuery("select username, password, enabled from users where username=?")
+				.authoritiesByUsernameQuery(
+						"SELECT authority FROM user_authorities WHERE username_id=(SELECT id FROM users WHERE username=?")
 				.passwordEncoder(new BCryptPasswordEncoder());
 	}
 

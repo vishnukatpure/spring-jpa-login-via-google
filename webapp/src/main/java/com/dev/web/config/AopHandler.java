@@ -8,7 +8,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AopHandler {
 
-	@AfterThrowing(pointcut = "execution(* com.dev.spring.services.*.*(..))", throwing = "ex")
+	@AfterThrowing(pointcut = "execution(* com.dev.core.services.*.*(..))"
+			+ "|| execution(* com.dev.web.services.*.*(..))"
+			+ "|| execution(* com.dev.oauth.services.*.*(..))", throwing = "ex")
 	private String afterThrow(Exception ex) {
 		return "EXCEPTION_OCCIRED";
 	}

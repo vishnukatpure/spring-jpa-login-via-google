@@ -18,7 +18,7 @@ import com.dev.core.services.AuthoritiesService;
 import com.dev.core.services.UserService;
 import com.dev.oauth.model.SocialUser;
 import com.dev.oauth.repository.SocialUserRepository;
-import com.dev.oauth.seccurity.SocialAuthenticationProvider;
+import com.dev.oauth.security.SocialAuthenticationProvider;
 
 @Service
 public class SocialUserService {
@@ -68,7 +68,7 @@ public class SocialUserService {
 	public SocialUser saveUserAndSocialUser(SocialUser socialUser) {
 		List<SocialUser> userSocialAuthDetailDB = findByuserSocialIdOrEmail(socialUser.getUserSocialId(),
 				socialUser.getEmail());
-		if (userSocialAuthDetailDB != null) {
+		if (!userSocialAuthDetailDB.isEmpty()) {
 			socialUser = userSocialAuthDetailDB.get(0);
 		} else {
 			User user = new User();
@@ -77,12 +77,15 @@ public class SocialUserService {
 			user.setEnabled(true);
 			user.setFirstName(socialUser.getFirstName());
 			user.setLastName(socialUser.getLastName());
-			// user.setSex();
 			user.setUsername(socialUser.getFirstName() + socialUser.getLastName());
+			user.setAccountNonExpired(true);
+			user.setAccountNonLocked(true);
+			user.setCredentialsNonExpired(true);
+			// user.setSex(null);
 			user = userService.saveUser(user);
 
 			Authorities authorities = new Authorities();
-			authorities.setAuthority("ROLE_ADMIN");
+			authorities.setAuthority("USER");
 			authorities.setUsername(user);
 			authorities.setCreateDate(new Date());
 			authoritiesService.addAuthorities(authorities);
@@ -103,7 +106,7 @@ public class SocialUserService {
 		List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 		List<Authorities> authorities = authoritiesService.findByUserName(user);
 		authorities.forEach(e -> grantedAuthorities.add(e));
-		return null;
+		return grantedAuthorities;
 	}
 
 }
