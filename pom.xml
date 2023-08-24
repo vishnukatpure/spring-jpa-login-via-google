@@ -171,13 +171,6 @@
 			<version>${Flyway.version}</version>
 		</dependency>
 
-		<!-- Modal Mapper -->
-		<dependency>
-			<groupId>org.modelmapper</groupId>
-			<artifactId>modelmapper</artifactId>
-			<version>2.3.5</version>
-		</dependency>
-
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -189,7 +182,6 @@
 			<artifactId>google-api-services-plus</artifactId>
 			<version>v1-rev503-1.22.0</version>
 		</dependency>
-
 
 	</dependencies>
 </project>

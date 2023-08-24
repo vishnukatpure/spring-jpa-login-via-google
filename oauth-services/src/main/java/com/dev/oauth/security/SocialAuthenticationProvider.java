@@ -15,6 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+import com.dev.oauth.services.CustomUserService;
+
 @Order(Ordered.LOWEST_PRECEDENCE)
 @Component
 public class SocialAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
@@ -43,7 +45,7 @@ public class SocialAuthenticationProvider extends AbstractUserDetailsAuthenticat
 	private String userNotFoundEncodedPassword;
 
 	@Autowired
-	private UserDetailsService userDetailsService;
+	private CustomUserService userDetailsService;
 
 	public SocialAuthenticationProvider() {
 		setPasswordEncoder(new BCryptPasswordEncoder());
@@ -86,48 +88,6 @@ public class SocialAuthenticationProvider extends AbstractUserDetailsAuthenticat
 		return loadedUser;
 	}
 
-	/**
-	 * Sets the PasswordEncoder instance to be used to encode and validate
-	 * passwords. If not set, the password will be compared as plain text.
-	 * <p>
-	 * For systems which are already using salted password which are encoded with a
-	 * previous release, the encoder should be of type
-	 * {@code org.springframework.security.authentication.encoding.PasswordEncoder}.
-	 * Otherwise, the recommended approach is to use
-	 * {@code org.springframework.security.crypto.password.PasswordEncoder}.
-	 *
-	 * @param passwordEncoder must be an instance of one of the
-	 *                        {@code PasswordEncoder} types.
-	 */
-	public void setPasswordEncoder(Object passwordEncoder) {
-		Assert.notNull(passwordEncoder, "passwordEncoder cannot be null");
-
-		if (passwordEncoder instanceof PasswordEncoder) {
-			setPasswordEncoder((PasswordEncoder) passwordEncoder);
-			return;
-		}
-
-		if (passwordEncoder instanceof org.springframework.security.crypto.password.PasswordEncoder) {
-			setPasswordEncoder(new PasswordEncoder() {
-				@Override
-				public String encode(CharSequence rawPassword) {
-					// TODO Auto-generated method stub
-					return null;
-				}
-
-				@Override
-				public boolean matches(CharSequence rawPassword, String encodedPassword) {
-					// TODO Auto-generated method stub
-					return false;
-				}
-			});
-
-			return;
-		}
-
-		throw new IllegalArgumentException("passwordEncoder must be a PasswordEncoder instance");
-	}
-
 	private void setPasswordEncoder(PasswordEncoder passwordEncoder) {
 		Assert.notNull(passwordEncoder, "passwordEncoder cannot be null");
 
@@ -137,10 +97,6 @@ public class SocialAuthenticationProvider extends AbstractUserDetailsAuthenticat
 
 	protected PasswordEncoder getPasswordEncoder() {
 		return passwordEncoder;
-	}
-
-	public void setUserDetailsService(UserDetailsService userDetailsService) {
-		this.userDetailsService = userDetailsService;
 	}
 
 	protected UserDetailsService getUserDetailsService() {
