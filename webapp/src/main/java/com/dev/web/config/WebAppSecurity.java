@@ -21,7 +21,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 @EnableWebSecurity
 @EnableAspectJAutoProxy(proxyTargetClass = true)
-public class WebSecurity extends WebSecurityConfigurerAdapter {
+public class WebAppSecurity extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private DataSource dataSource;
@@ -37,14 +37,15 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/login", "webapp/images/**", "/oauth-login/google/**").permitAll();
+		http.authorizeRequests().antMatchers("/images/**", "/css/**").permitAll();
+		http.authorizeRequests().antMatchers("/login", "/oauth-login/google/**").permitAll();
 
 		http.authorizeRequests().antMatchers("/**").hasAnyRole("ADMIN", "USER").and().formLogin().loginPage("/login")
 				.defaultSuccessUrl("/home").failureUrl("/login?error=true").permitAll().and().logout()
 				.logoutSuccessUrl("/login?logout=true").invalidateHttpSession(true).permitAll().and().httpBasic();
 		http.csrf().disable();
 	}
-	
+
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();

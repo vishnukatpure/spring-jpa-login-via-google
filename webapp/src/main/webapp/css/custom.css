@@ -1,0 +1,18 @@
+#loadingImageDivId {
+	background: url(../images/ajax-loader.gif) no-repeat center center;
+	height: 100px;
+	width: 100px;
+	position: absolute;
+	z-index: 1001;
+	left: 50%;
+	top: 50%;
+	margin: -25px 0 0 -25px;
+}
+
+.wrap-text {
+	word-wrap: break-word;
+}
+
+.googleLogo {
+	background-color: red
+}

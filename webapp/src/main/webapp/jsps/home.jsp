@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Home</title>
+
 </head>
 <body>
 	homePage
@@ -16,5 +17,7 @@
 			</tr>
 		</table>
 	</form>
+		<img alt="not found" src="images/google.png">
+		<img alt="not found" src="images/logo.jpg">
 </body>
 </html>

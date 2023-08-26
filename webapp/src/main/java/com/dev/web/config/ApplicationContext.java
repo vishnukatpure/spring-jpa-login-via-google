@@ -26,7 +26,7 @@ import org.springframework.web.client.RestTemplate;
 @ComponentScan(basePackages = { "com.dev.core", "com.dev.oauth", "com.dev.web" })
 @EnableJpaRepositories(basePackages = { "com.dev.core.repository", "com.dev.oauth.repository", "com.dev.web.repository" })
 @PropertySource("classpath:database.properties")
-public class DataConfig {
+public class ApplicationContext {
 
 	private static final String PROPERTY_DRIVER = "driver";
 	private static final String PROPERTY_URL = "url";

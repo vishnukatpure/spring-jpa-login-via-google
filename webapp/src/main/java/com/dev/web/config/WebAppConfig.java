@@ -7,22 +7,26 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.dev.web")
-public class WebConfig implements WebMvcConfigurer {
+@ComponentScan(basePackages = { "com.dev.web" })
+public class WebAppConfig implements WebMvcConfigurer {
 
 	@Bean
 	public InternalResourceViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("/views/");
+		resolver.setViewClass(JstlView.class);
+		resolver.setPrefix("/jsps/");
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/webapp/**").addResourceLocations("/webapp/");
+		registry.addResourceHandler("/*").addResourceLocations("/images/")
+				.addResourceLocations("/css/");
 	}
+
 }

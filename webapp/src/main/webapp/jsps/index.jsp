@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+<head>
+	
+</head>
 <body onload='document.loginForm.username.focus();'>
 	<h1>Spring Security - Login Form</h1>
 
@@ -29,14 +32,8 @@
 	</form>
 
 	<form>
-		<a href="oauth-login/google/initiate"> Login via Google
-			<img alt="" src="images/google.png">
+		<a href="oauth-login/google/initiate" class="googleLogo"> Login via Google
+			
 		</a>
 	</form>
 </body>
-
-<style>
-.social_box_google {
-	background-image: ../images/google.png
-}
-</style>
