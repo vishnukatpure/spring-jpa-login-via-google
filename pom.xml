@@ -23,13 +23,12 @@
 		<maven.compiler.executable>false</maven.compiler.executable>
 
 		<!-- For Dependencies -->
-		<spring.framework>5.2.22.RELEASE</spring.framework>
-		<spring.security>5.2.0.RELEASE</spring.security>
+		<spring.framework>5.3.29</spring.framework>
+		<spring.security>5.8.6</spring.security>
 		<mysql.version>8.0.28</mysql.version>
 		<serializer.version>2.9.10.1</serializer.version>
-		<spring.data>1.11.23.RELEASE</spring.data>
+		<spring.data.jpa>1.11.23.RELEASE</spring.data.jpa>
 		<hibernate.manager>4.3.5.Final</hibernate.manager>
-		<spring.security.version>4.0.2.RELEASE</spring.security.version>
 		<Flyway.version>3.0</Flyway.version>
 	</properties>
 
@@ -73,15 +72,18 @@
 	</build>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.framework}</version>
-		</dependency>
+		<!-- Mysql -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
+		</dependency>
+
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.framework}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -93,6 +95,8 @@
 			<artifactId>spring-context</artifactId>
 			<version>${spring.framework}</version>
 		</dependency>
+
+		<!-- Spring Security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
@@ -103,18 +107,21 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>${spring.security}</version>
 		</dependency>
+
+		<!-- Spring jdbc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${spring.framework}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
+		<!-- Spring aop -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
 			<version>${spring.framework}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
@@ -126,13 +133,14 @@
 			<version>1.7.0</version>
 		</dependency>
 
-
+		<!-- Spring JPA -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
-			<version>${spring.data}</version>
+			<version>${spring.data.jpa}</version>
 		</dependency>
-
+		
+		<!-- Spring Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>

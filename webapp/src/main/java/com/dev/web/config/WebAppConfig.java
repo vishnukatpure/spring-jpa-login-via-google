@@ -1,7 +1,6 @@
 package com.dev.web.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -11,7 +10,6 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.dev.web" })
 public class WebAppConfig implements WebMvcConfigurer {
 
 	@Bean
@@ -25,8 +23,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/*").addResourceLocations("/images/")
-				.addResourceLocations("/css/");
+		registry.addResourceHandler("/images/**", "/css/**").addResourceLocations("/WEB-INF/images/")
+				.addResourceLocations("/WEB-INF/css/");
 	}
 
 }

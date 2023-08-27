@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="css/custom.css">
 </head>
 <body onload='document.loginForm.username.focus();'>
 	<h1>Spring Security - Login Form</h1>
@@ -30,10 +31,6 @@
 			</tr>
 		</table>
 	</form>
-
-	<form>
-		<a href="oauth-login/google/initiate" class="googleLogo"> Login via Google
-			
-		</a>
-	</form>
+	<a href="oauth-login/google/initiate"><img alt="" class="google-image" src="images/google.png"> </a>
 </body>
+</html>

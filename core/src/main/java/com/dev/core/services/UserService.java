@@ -1,13 +1,17 @@
 package com.dev.core.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dev.core.model.Authorities;
 import com.dev.core.model.User;
 import com.dev.core.repository.UserRepository;
 
@@ -16,6 +20,9 @@ public class UserService {
 
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	AuthoritiesService authoritiesService;
 
 	@Transactional
 	public List<User> getAllUsers() {
@@ -67,6 +74,19 @@ public class UserService {
 
 	public User saveUser(User user) {
 		return userRepository.save(user);
+	}
+
+	public UserDetails loadUserByUsernameWithAuthorities(String username) {
+		User user = findByUsername(username);
+		user.setAuthorities(findGrantedAuthoritiesForUser(user));
+		return user;
+	}
+
+	private List<GrantedAuthority> findGrantedAuthoritiesForUser(User user) {
+		List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+		List<Authorities> authorities = authoritiesService.findByUserName(user);
+		authorities.forEach(e -> grantedAuthorities.add(e));
+		return grantedAuthorities;
 	}
 
 }

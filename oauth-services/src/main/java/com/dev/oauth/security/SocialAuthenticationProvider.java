@@ -8,44 +8,26 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import com.dev.oauth.services.CustomUserService;
+import com.dev.core.services.UserService;
 
 @Order(Ordered.LOWEST_PRECEDENCE)
 @Component
 public class SocialAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
-	// ~ Static fields/initializers
-	// =====================================================================================
 
-	/**
-	 * The plaintext password used to perform
-	 * {@link PasswordEncoder#isPasswordValid(String, String, Object)} on when the
-	 * user is not found to avoid SEC-2056.
-	 */
 	private static final String USER_NOT_FOUND_PASSWORD = "userNotFoundPassword";
-
-	// ~ Instance fields
-	// ================================================================================================
 
 	private PasswordEncoder passwordEncoder;
 
-	/**
-	 * The password used to perform
-	 * {@link PasswordEncoder#isPasswordValid(String, String, Object)} on when the
-	 * user is not found to avoid SEC-2056. This is necessary, because some
-	 * {@link PasswordEncoder} implementations will short circuit if the password is
-	 * not in a valid format.
-	 */
 	private String userNotFoundEncodedPassword;
 
 	@Autowired
-	private CustomUserService userDetailsService;
+	private UserService userDetailsService;
 
 	public SocialAuthenticationProvider() {
 		setPasswordEncoder(new BCryptPasswordEncoder());
@@ -62,7 +44,7 @@ public class SocialAuthenticationProvider extends AbstractUserDetailsAuthenticat
 	}
 
 	protected void doAfterPropertiesSet() {
-		Assert.notNull(this.userDetailsService, "A UserDetailsService must be set");
+		Assert.notNull(this.getUserDetailsService(), "A UserDetailsService must be set");
 	}
 
 	protected final UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication)
@@ -70,7 +52,7 @@ public class SocialAuthenticationProvider extends AbstractUserDetailsAuthenticat
 		UserDetails loadedUser;
 
 		try {
-			loadedUser = this.getUserDetailsService().loadUserByUsername(username);
+			loadedUser = this.getUserDetailsService().loadUserByUsernameWithAuthorities(username);
 		} catch (UsernameNotFoundException notFound) {
 			if (authentication.getCredentials() != null) {
 				String presentedPassword = authentication.getCredentials().toString();
@@ -99,7 +81,7 @@ public class SocialAuthenticationProvider extends AbstractUserDetailsAuthenticat
 		return passwordEncoder;
 	}
 
-	protected UserDetailsService getUserDetailsService() {
+	protected UserService getUserDetailsService() {
 		return userDetailsService;
 	}
 }

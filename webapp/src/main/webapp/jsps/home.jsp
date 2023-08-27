@@ -17,7 +17,5 @@
 			</tr>
 		</table>
 	</form>
-		<img alt="not found" src="images/google.png">
-		<img alt="not found" src="images/logo.jpg">
 </body>
 </html>
