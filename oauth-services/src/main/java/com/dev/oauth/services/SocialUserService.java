@@ -12,9 +12,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dev.core.enums.DefaultRoles;
 import com.dev.core.model.Authorities;
 import com.dev.core.model.User;
 import com.dev.core.services.AuthoritiesService;
+import com.dev.core.services.RolesService;
 import com.dev.core.services.UserService;
 import com.dev.oauth.model.SocialUser;
 import com.dev.oauth.repository.SocialUserRepository;
@@ -33,7 +35,10 @@ public class SocialUserService {
 	private AuthoritiesService authoritiesService;
 
 	@Autowired
-	UserService userService;
+	private UserService userService;
+
+	@Autowired
+	private RolesService rolesService;
 
 	@Transactional
 	public List<SocialUser> getAllSocialUser() {
@@ -77,7 +82,7 @@ public class SocialUserService {
 			user.setEnabled(true);
 			user.setFirstName(socialUser.getFirstName());
 			user.setLastName(socialUser.getLastName());
-			user.setUsername(socialUser.getFirstName() + socialUser.getLastName());
+			user.setUsername(socialUser.getFirstName() + " " + socialUser.getLastName());
 			user.setAccountNonExpired(true);
 			user.setAccountNonLocked(true);
 			user.setCredentialsNonExpired(true);
@@ -85,7 +90,7 @@ public class SocialUserService {
 			user = userService.saveUser(user);
 
 			Authorities authorities = new Authorities();
-			authorities.setAuthority("USER");
+			authorities.setRole(rolesService.findByRole(DefaultRoles.ROLE_USER.name()));
 			authorities.setUsername(user);
 			authorities.setCreateDate(new Date());
 			authoritiesService.addAuthorities(authorities);

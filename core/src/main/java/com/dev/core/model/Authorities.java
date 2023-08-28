@@ -17,7 +17,8 @@ public class Authorities extends EntityBase implements GrantedAuthority {
 	@ManyToOne
 	private User username;
 
-	private String authority;
+	@ManyToOne
+	private Roles role;
 
 	public User getUsername() {
 		return username;
@@ -28,11 +29,15 @@ public class Authorities extends EntityBase implements GrantedAuthority {
 	}
 
 	public String getAuthority() {
-		return authority;
+		return role.getRole();
 	}
 
-	public void setAuthority(String authority) {
-		this.authority = authority;
+	public Roles getRole() {
+		return role;
+	}
+
+	public void setRole(Roles role) {
+		this.role = role;
 	}
 
 }

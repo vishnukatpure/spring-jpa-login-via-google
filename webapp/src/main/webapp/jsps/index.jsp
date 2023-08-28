@@ -19,7 +19,7 @@
 		<table>
 			<tr>
 				<td>UserName:</td>
-				<td><input type="text" name="username" value='admin'></td>
+				<td><input type="text" name="username" value='admin@demo.in'></td>
 			</tr>
 			<tr>
 				<td>Password:</td>

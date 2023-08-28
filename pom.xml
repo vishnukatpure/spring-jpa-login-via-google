@@ -25,10 +25,10 @@
 		<!-- For Dependencies -->
 		<spring.framework>5.3.29</spring.framework>
 		<spring.security>5.8.6</spring.security>
-		<mysql.version>8.0.28</mysql.version>
+		<mysql.version>8.0.33</mysql.version>
 		<serializer.version>2.9.10.1</serializer.version>
 		<spring.data.jpa>1.11.23.RELEASE</spring.data.jpa>
-		<hibernate.manager>4.3.5.Final</hibernate.manager>
+		<hibernate.manager>5.3.29.Final</hibernate.manager>
 		<Flyway.version>3.0</Flyway.version>
 	</properties>
 

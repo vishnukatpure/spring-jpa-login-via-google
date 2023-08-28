@@ -24,7 +24,7 @@ public class WebAppSecurity extends WebSecurityConfigurerAdapter {
 		authenticationMgr.jdbcAuthentication().dataSource(dataSource)
 				.usersByUsernameQuery("select username, password, enabled  from users where username=?")
 				.authoritiesByUsernameQuery(
-						"SELECT username, a.authority as role FROM users INNER JOIN user_authorities a ON users.id = a.id WHERE users.username=?")
+						"SELECT username, r.role FROM users INNER JOIN user_authorities a ON users.id = a.id INNER JOIN roles r ON a.id=r.id where users.username=?")
 				.passwordEncoder(encoder());
 	}
 

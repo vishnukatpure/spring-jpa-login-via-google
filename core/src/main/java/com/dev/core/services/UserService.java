@@ -30,11 +30,6 @@ public class UserService {
 	}
 
 	@Transactional
-	public List<User> findByName(String name) {
-		return userRepository.findByFirstName(name);
-	}
-
-	@Transactional
 	public User getById(Long id) {
 		return userRepository.findOne(id);
 	}
