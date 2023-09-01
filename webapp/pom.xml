@@ -7,7 +7,7 @@
 	<parent>
 		<artifactId>spring-mvc-jpa-mysql-loginViaGoogle</artifactId>
 		<groupId>com.spring-mvc-jpa-mysql</groupId>
-		<version>1.0-SNAPSHOT</version>
+		<version>1</version>
 	</parent>
 
 	<groupId>com.webapp</groupId>
