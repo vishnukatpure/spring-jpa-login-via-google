@@ -19,7 +19,7 @@
 		<table>
 			<tr>
 				<td>UserName:</td>
-				<td><input type="text" name="username" value='admin@demo.in'></td>
+				<td><input type="text" name="username" value='testt01021990@gmail.com'></td>
 			</tr>
 			<tr>
 				<td>Password:</td>
@@ -31,6 +31,7 @@
 			</tr>
 		</table>
 	</form>
-	<a href="oauth-login/google/initiate"><img alt="" class="google-image" src="images/google.png"> </a>
+	<a href="oauth-login/google/initiate"><img alt=""
+		class="google-image" src="images/google.png"> </a>
 </body>
 </html>

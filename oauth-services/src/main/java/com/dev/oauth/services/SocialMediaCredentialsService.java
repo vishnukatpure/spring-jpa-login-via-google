@@ -23,12 +23,12 @@ public class SocialMediaCredentialsService {
 
 	@Transactional
 	public SocialMediaCredentials getById(Long id) {
-		return mediaCredentialsRepository.findOne(id);
+		return mediaCredentialsRepository.findById(id).get();
 	}
 
 	@Transactional
 	public void deleteSocialMediaCredentials(Long id) {
-		mediaCredentialsRepository.delete(id);
+		mediaCredentialsRepository.deleteById(id);
 	}
 
 	@Transactional

@@ -1,19 +1,10 @@
 package com.dev.core.dto;
 
-public class PersonDTO {
+public class PersonDTO extends AbstractEntityBaseDTO {
 
-	private Long id;
 	private Integer age;
 	private String firstName;
 	private String lastName;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public Integer getAge() {
 		return age;

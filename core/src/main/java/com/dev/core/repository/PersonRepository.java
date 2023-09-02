@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.dev.core.model.User;
+import com.dev.core.model.Person;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface PersonRepository extends CrudRepository<Person, Long> {
 
-	public List<User> findByUsername(String username);
+	List<Person> findByFirstName(String firstName);
 }

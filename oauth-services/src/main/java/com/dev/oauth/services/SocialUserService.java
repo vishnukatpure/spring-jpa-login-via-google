@@ -1,7 +1,7 @@
 package com.dev.oauth.services;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,12 +47,12 @@ public class SocialUserService {
 
 	@Transactional
 	public SocialUser getById(Long id) {
-		return socialUserRepository.findOne(id);
+		return socialUserRepository.findById(id).get();
 	}
 
 	@Transactional
 	public void deleteSocialUser(Long id) {
-		socialUserRepository.delete(id);
+		socialUserRepository.deleteById(id);
 	}
 
 	@Transactional
@@ -77,7 +77,7 @@ public class SocialUserService {
 			socialUser = userSocialAuthDetailDB.get(0);
 		} else {
 			User user = new User();
-			user.setCreateDate(new Date());
+			user.setCreateDate(LocalDateTime.now());
 			user.setEmail(socialUser.getEmail());
 			user.setEnabled(true);
 			user.setFirstName(socialUser.getFirstName());
@@ -92,7 +92,7 @@ public class SocialUserService {
 			Authorities authorities = new Authorities();
 			authorities.setRole(rolesService.findByRole(DefaultRoles.ROLE_USER.name()));
 			authorities.setUsername(user);
-			authorities.setCreateDate(new Date());
+			authorities.setCreateDate(LocalDateTime.now());
 			authoritiesService.addAuthorities(authorities);
 			socialUser.setUser(user);
 			socialUser = socialUserRepository.save(socialUser);

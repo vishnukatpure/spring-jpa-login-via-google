@@ -1,23 +1,9 @@
-package com.dev.core.model;
+package com.dev.core.dto;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+public abstract class AbstractEntityBaseDTO {
 
-@MappedSuperclass
-public class EntityBase implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2187547867472438846L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	private Long createBy;
@@ -67,5 +53,6 @@ public class EntityBase implements Serializable {
 	public void setUpdatedDate(LocalDateTime updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-
+	
+	
 }

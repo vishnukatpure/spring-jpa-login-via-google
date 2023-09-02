@@ -1,10 +1,12 @@
 package com.dev.core.services;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -31,19 +33,31 @@ public class UserService {
 
 	@Transactional
 	public User getById(Long id) {
-		return userRepository.findOne(id);
+		return userRepository.findById(id).get();
 	}
 
 	@Transactional
 	public void deleteUser(Long userId) {
-		userRepository.delete(userId);
+		userRepository.deleteById(userId);
 	}
 
+	/**
+	 * @CachePut update the cache entries whenever we alter them
+	 * @param user
+	 * @return
+	 */
 	@Transactional
+	@CachePut(value = "users", key = "#result.id")
 	public boolean updateUser(User user) {
 		return userRepository.save(user) != null;
 	}
 
+	/**
+	 * @CacheEvict enable caching behavior for a method
+	 * @param username
+	 * @return
+	 */
+	@Cacheable(cacheNames = "users")
 	public User findByUsername(String username) {
 		List<User> users = userRepository.findByUsername(username);
 		if (users.isEmpty()) {
@@ -56,8 +70,8 @@ public class UserService {
 	public User addUser(String firstName, String lastName, String email, String sex, String password) {
 
 		User user = new User();
-		user.setCreateDate(new Date());
-		user.setUpdatedDate(new Date());
+		user.setCreateDate(LocalDateTime.now());
+		user.setUpdatedDate(LocalDateTime.now());
 		user.setEmail(email);
 		user.setFirstName(firstName);
 		user.setLastName(lastName);

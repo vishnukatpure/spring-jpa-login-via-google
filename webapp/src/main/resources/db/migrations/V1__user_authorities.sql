@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 LOCK TABLES `users` WRITE;
-INSERT INTO `users` VALUES (1,1,NULL,NULL,NULL,1,1,1,'admin@demo.in',1,NULL,NULL,'$2a$10$hbxecwitQQ.dDT4JOFzQAulNySFwEpaFLw38jda6Td.Y/cOiRzDFu',NULL,"admin@demo.in");
+INSERT INTO `users` VALUES (1,1,NULL,NULL,NULL,1,1,1,'testt01021990@gmail.com',1,NULL,NULL,'$2a$10$hbxecwitQQ.dDT4JOFzQAulNySFwEpaFLw38jda6Td.Y/cOiRzDFu',NULL,"testt01021990@gmail.com");
 UNLOCK TABLES;
 
 
