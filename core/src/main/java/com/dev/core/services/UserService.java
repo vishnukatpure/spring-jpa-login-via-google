@@ -53,7 +53,7 @@ public class UserService {
 	}
 
 	/**
-	 * @CacheEvict enable caching behavior for a method
+	 * @Cacheable enable caching behavior for a method
 	 * @param username
 	 * @return
 	 */

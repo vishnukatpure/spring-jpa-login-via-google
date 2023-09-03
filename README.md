@@ -16,4 +16,23 @@ AOP is an approach to programming that allows global properties of a program to 
 # JPA Cache
 cache enabled for user table on findByUsename method
 
+# CRUD Operation on Person class
+CREATE Method:POST
+
+	http://localhost:8080/spring-jpa-login-via-google/person
+	{ "lastName": "ooasssssss", "firstName": "aaaaaaaa", "age":"30" }
+	
+UPDATE Method:PUT
+
+	http://localhost:8080/spring-jpa-login-via-google/person
+	{ "lastName": "ooasssssss", "firstName": "aaaaaaaa", "age":"30", "id":"1" }
+	
+DELETE Method:DELETE
+
+	http://localhost:8080/spring-jpa-login-via-google/person/1
+	
+GET All Record Method:GET
+
+	http://localhost:8080/spring-jpa-login-via-google/person/all
+
 
