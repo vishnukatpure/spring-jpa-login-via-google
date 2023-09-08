@@ -13,10 +13,10 @@ import com.dev.core.dto.ResponseDTO;
 import com.dev.core.exception.handler.BadRequestException;
 import com.dev.core.model.Person;
 import com.dev.core.repository.PersonRepository;
-import com.dev.core.services.generic.GenericCRUDService;
+import com.dev.core.services.generic.GenericService;
 
 @Service
-public class PersonService extends GenericCRUDService {
+public class PersonService extends GenericService {
 
 	@Autowired
 	PersonRepository personRepository;

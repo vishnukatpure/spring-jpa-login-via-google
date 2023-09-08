@@ -13,7 +13,7 @@ import com.dev.core.model.User;
 import com.dev.core.services.UserService;
 
 @Service
-public abstract class GenericCRUDService {
+public abstract class GenericService {
 
 	private static final ModelMapper mapper = new ModelMapper();
 
