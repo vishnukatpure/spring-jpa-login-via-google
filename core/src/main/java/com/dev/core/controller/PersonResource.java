@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dev.core.dto.PersonDTO;
 import com.dev.core.dto.ResponseDTO;
-import com.dev.core.model.Person;
 import com.dev.core.services.PersonService;
 
 @RestController
@@ -29,8 +28,9 @@ public class PersonResource extends AbstractResource {
 	}
 
 	@GetMapping(value = "/aop/testing")
-	public Person aopTesting() {
-		return personService.aopTesting();
+	public ResponseDTO aopTesting() throws Exception {
+		ResponseDTO dto = personService.aopTesting();
+		return dto;
 	}
 
 	@GetMapping(value = "/personByName/{name}")

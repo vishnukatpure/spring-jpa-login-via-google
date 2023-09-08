@@ -2,6 +2,7 @@ package com.dev.core.services.generic;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public abstract class GenericCRUDService {
 	}
 
 	public User getLoggedInUser() {
-		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = (UserDetails) getAuthentication().getPrincipal();
 		User user = null;
 		if (userDetails != null) {
 			if (userDetails instanceof User)
@@ -37,6 +38,10 @@ public abstract class GenericCRUDService {
 				user = userService.findByUsername(userDetails.getUsername());
 		}
 		return user;
+	}
+
+	public Authentication getAuthentication() {
+		return SecurityContextHolder.getContext().getAuthentication();
 	}
 
 }

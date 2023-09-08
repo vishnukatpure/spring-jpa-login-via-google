@@ -3,6 +3,7 @@ package com.dev.core.controller.login;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -11,8 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dev.core.controller.AbstractResource;
+import com.dev.core.utils.JwtUtils;
+
 @RestController
-public class LoginController {
+public class LoginController extends AbstractResource {
+
+	@Autowired
+	private JwtUtils jwtUtils;
 
 	@GetMapping(value = { "/" })
 	public ModelAndView welcomePage() {
@@ -23,7 +30,9 @@ public class LoginController {
 
 	@GetMapping(value = { "/home" })
 	public ModelAndView homePage() {
+		String token = jwtUtils.generateJwtToken(getAuthentication());
 		ModelAndView model = new ModelAndView();
+		model.addObject("token", token);
 		model.setViewName("home");
 		return model;
 	}

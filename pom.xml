@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.spring-mvc-jpa-mysql</groupId>
-	<artifactId>spring-mvc-jpa-mysql-loginViaGoogle</artifactId>
+	<artifactId>spring-jpa-login-via-google</artifactId>
 	<packaging>pom</packaging>
 	<version>1</version>
 	<name>Spring Data JPA Maven Webapp</name>
@@ -197,7 +197,7 @@
 			<artifactId>modelmapper</artifactId>
 			<version>2.3.5</version>
 		</dependency>
-		
+
 		<!-- Logger -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -220,5 +220,25 @@
 			<version>1.2.17</version>
 		</dependency>
 
+		<!-- JWT -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 </project>

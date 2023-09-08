@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dev.core.dto.PersonDTO;
 import com.dev.core.dto.ResponseDTO;
+import com.dev.core.exception.handler.BadRequestException;
 import com.dev.core.model.Person;
 import com.dev.core.repository.PersonRepository;
 import com.dev.core.services.generic.GenericCRUDService;
@@ -61,7 +62,7 @@ public class PersonService extends GenericCRUDService {
 		return bindResponse(getMapper().map(personRepository.save(person), PersonDTO.class));
 	}
 
-	public Person aopTesting() {
-		throw new NullPointerException("in AOP runtime exception");
+	public ResponseDTO aopTesting() throws Exception{
+		throw new BadRequestException("in AOP runtime exception");
 	}
 }
