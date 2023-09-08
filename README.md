@@ -16,6 +16,10 @@ AOP is an approach to programming that allows global properties of a program to 
 # JPA Cache
 cache enabled for user table on findByUsename method
 
+# log4j
+
+Log4j support added to log error,info etc
+
 # OAuth 2.0 (Bearer token)
 OAuth enabled you can get/see Bearer token after login or geyt token using below API
 METHOD: GET
@@ -25,7 +29,8 @@ METHOD: GET
 	password: admin@123
 	
 
-# CRUD Operation on Person class
+# CRUD Operation on Person class 
+you can find postman script in resource folder of webapp module
 CREATE Method:POST
 
 	http://localhost:8080/spring-jpa-login-via-google/person
