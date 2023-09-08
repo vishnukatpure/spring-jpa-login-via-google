@@ -27,9 +27,9 @@ public class PersonResource extends AbstractResource {
 		return personService.getById(id);
 	}
 
-	@GetMapping(value = "/aop/testing")
-	public ResponseDTO aopTesting() throws Exception {
-		ResponseDTO dto = personService.aopTesting();
+	@GetMapping(value = "/aop/testing/{type}")
+	public ResponseDTO aopTesting(@PathVariable String type) throws Exception {
+		ResponseDTO dto = personService.aopTesting(type);
 		return dto;
 	}
 

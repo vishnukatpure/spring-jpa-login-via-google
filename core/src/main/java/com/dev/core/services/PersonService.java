@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dev.core.custom.exception.BadRequestException;
+import com.dev.core.custom.exception.FormValidationException;
 import com.dev.core.dto.PersonDTO;
 import com.dev.core.dto.ResponseDTO;
-import com.dev.core.exception.handler.BadRequestException;
 import com.dev.core.model.Person;
 import com.dev.core.repository.PersonRepository;
 import com.dev.core.services.generic.GenericService;
@@ -62,7 +63,14 @@ public class PersonService extends GenericService {
 		return bindResponse(getMapper().map(personRepository.save(person), PersonDTO.class));
 	}
 
-	public ResponseDTO aopTesting() throws Exception{
-		throw new BadRequestException("in AOP runtime exception");
+	public ResponseDTO aopTesting(String type) throws Exception {
+		if (type.equals("1")) {
+			throw new BadRequestException("in BadRequestException exception");
+		}
+		if (type.equals("2")) {
+			throw new FormValidationException("Form Validation error");
+		}
+
+		throw new NullPointerException("in BadRequestException");
 	}
 }

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.dev.core.exception.handler.BadRequestException;
+import com.dev.core.custom.exception.BadRequestException;
 import com.dev.core.services.SpringRestTemplate;
 import com.dev.oauth.enums.SocialMediaProvider;
 import com.dev.oauth.model.SocialMediaCredentials;

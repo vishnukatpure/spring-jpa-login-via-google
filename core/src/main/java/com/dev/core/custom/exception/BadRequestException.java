@@ -1,4 +1,4 @@
-package com.dev.core.exception.handler;
+package com.dev.core.custom.exception;
 
 public class BadRequestException extends RuntimeException {
 	private static final long serialVersionUID = 1L;

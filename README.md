@@ -49,4 +49,11 @@ GET All Record Method:GET
 
 	http://localhost:8080/spring-jpa-login-via-google/person/all
 
+# ExceptionHandler
+Added controller advice to handle all type of exception and based on that return speciefic object
+
+Testing Method: GET
+
+	http://localhost:8080/spring-jpa-login-via-google/person/aop/testing/1 
+	http://localhost:8080/spring-jpa-login-via-google/person/aop/testing/1
 
