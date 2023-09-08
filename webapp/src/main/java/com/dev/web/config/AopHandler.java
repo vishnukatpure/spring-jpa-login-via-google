@@ -1,10 +1,10 @@
 package com.dev.web.config;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 
 import com.dev.core.dto.ResponseDTO;
@@ -15,7 +15,7 @@ import com.dev.core.exception.handler.FormValidationException;
 @Configuration
 public class AopHandler {
 
-	Logger logger = LoggerFactory.getLogger(AopHandler.class);
+	private static Logger logger = LogManager.getLogger(AopHandler.class);
 
 	@AfterThrowing(pointcut = "execution(* com.dev.core.services.*.*(..))", throwing = "ex")
 	private ResponseDTO afterThrowInCore(JoinPoint joinPoint, Exception ex) {

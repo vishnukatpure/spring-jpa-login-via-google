@@ -3,8 +3,8 @@ package com.dev.core.utils;
 import java.security.Key;
 import java.util.Date;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -23,8 +23,8 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtUtils {
 
-	private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
-
+	private static Logger logger = LogManager.getLogger(JwtUtils.class);
+	
 	private String jwtSecret = "======================BezKoder=Spring===========================";
 
 	private int jwtExpirationSecond = 300;// 5 minute
