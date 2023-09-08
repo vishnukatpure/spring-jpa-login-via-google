@@ -38,6 +38,7 @@ public class JwtUtils {
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty("token", builder.compact());
 		jsonObject.addProperty("token-expiry", expirationTime.toString());
+		jsonObject.addProperty("token-type", "Bearer ");
 		return jsonObject.toString();
 	}
 

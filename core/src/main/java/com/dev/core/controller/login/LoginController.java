@@ -36,6 +36,11 @@ public class LoginController extends AbstractResource {
 		model.setViewName("home");
 		return model;
 	}
+	
+	@GetMapping(value = { "/get-token" })
+	public String getToken() {
+		return jwtUtils.generateJwtToken(getAuthentication());
+	}
 
 	@GetMapping(value = "/login")
 	public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,

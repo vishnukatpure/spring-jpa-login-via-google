@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "fd4c4d93-1634-4620-8aa1-33f473daa1b3",
+		"name": "login via google",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9303052"
+	},
+	"item": [
+		{
+			"name": "Add new person",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"lastName\": \"ooasssssss\", \"firstName\": \"aaaaaaaa\", \"email\":\"acd@ggg.com\", \"sex\":\"male\", \"age\":30 }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/spring-jpa-login-via-google/person",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring-jpa-login-via-google",
+						"person"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all person",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "testt01021990@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "admin@123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/spring-jpa-login-via-google/person/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring-jpa-login-via-google",
+						"person",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test AOP",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "testt01021990@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "admin@123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/spring-jpa-login-via-google/person/aop/testing",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring-jpa-login-via-google",
+						"person",
+						"aop",
+						"testing"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "testt01021990@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "admin@123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/spring-jpa-login-via-google/get-token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring-jpa-login-via-google",
+						"get-token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
