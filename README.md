@@ -18,10 +18,11 @@ cache enabled for user table on findByUsename method
 
 # log4j2
 
-Log4j support added to log error,info etc
+Log4j2 support added to log error,info etc
 
 # OAuth 2.0 (Bearer token)
-OAuth enabled you can get/see Bearer token after login or geyt token using below API
+OAuth2 enabled you can get/see Bearer token after login or get token using below API
+
 METHOD: GET
 
 	http://localhost:8080/spring-jpa-login-via-google/get-token
@@ -31,6 +32,7 @@ METHOD: GET
 
 # CRUD Operation on Person class 
 you can find postman script in resource folder of webapp module
+
 CREATE Method:POST
 
 	http://localhost:8080/spring-jpa-login-via-google/person

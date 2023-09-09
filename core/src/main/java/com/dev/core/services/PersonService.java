@@ -52,6 +52,7 @@ public class PersonService extends GenericService {
 		personDto.setCreateBy(getLoggedInUser().getId());
 		personDto.setCreateDate(LocalDateTime.now());
 		Person person = getMapper().map(personDto, Person.class);
+		person.validate();
 		return bindResponse(getMapper().map(personRepository.save(person), PersonDTO.class));
 	}
 

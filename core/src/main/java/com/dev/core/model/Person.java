@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.util.StringUtils;
+
+import com.dev.core.custom.exception.FormValidationException;
 
 @Entity
 @Table(name = "people")
@@ -50,5 +53,14 @@ public class Person extends EntityBase {
 	public String toString() {
 		return "Person{" + "id=" + getId() + ", age=" + age + ", firstName='" + firstName + '\'' + ", lastName='"
 				+ lastName + '\'' + '}';
+	}
+
+	public void validate() {
+		String msg = "";
+		if (!StringUtils.hasLength(firstName))
+			msg += "invalid First name";
+
+		if (StringUtils.hasLength(msg))
+			throw new FormValidationException(msg);
 	}
 }
