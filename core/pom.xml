@@ -9,5 +9,6 @@
 		<version>1</version>
 	</parent>
 	<artifactId>core</artifactId>
+	<packaging>jar</packaging>
 
 </project>

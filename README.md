@@ -16,7 +16,7 @@ AOP is an approach to programming that allows global properties of a program to 
 # JPA Cache
 cache enabled for user table on findByUsename method
 
-# log4j
+# log4j2
 
 Log4j support added to log error,info etc
 
