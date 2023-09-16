@@ -49,8 +49,7 @@ public class GoogleAuthenticationService {
 
 	private SocialUser buildGoogleUser(String body, String accessToken) {
 
-		com.google.gson.JsonParser jsonParser = new JsonParser();
-		JsonObject jo = (JsonObject) jsonParser.parse(body);
+		JsonObject jo = JsonParser.parseString(body).getAsJsonObject();
 		if (!jo.get("email_verified").getAsString().equals("true")) {
 			throw new BadRequestException("Email not verified");
 		}
