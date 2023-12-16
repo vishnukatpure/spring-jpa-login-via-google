@@ -1,0 +1,109 @@
+GREX IP: https://65.1.122.40/
+INFEX: 3.6.245.170
+
+
+Ref: https://linuxize.com/post/how-to-install-tomcat-8-5-on-ubuntu-18-04/
+
+loggedin as root
+	sudo -i
+
+Reboot Server:
+	sudo reboot
+	
+Get available Application list to install
+	apt list / apt search
+
+Update all libraries
+	sudo apt update
+	
+install java 1.8:
+	sudo apt-get install openjdk-8-jdk
+
+sudo ln -s /usr/lib/jvm/java-1.8.0-openjdk-amd64 /usr/lib/jvm/default-java
+
+sudo useradd -m -U -d /opt/tomcat -s /bin/false tomcat
+
+sudo apt-get install unzip wget
+
+cd /tmp
+wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.97/bin/apache-tomcat-8.5.97.zip
+
+unzip apache-tomcat-8.5.97.zip
+
+sudo mkdir -p /opt/tomcat
+
+sudo mv apache-tomcat-8.5.97 /opt/tomcat/
+
+sudo chown -R tomcat: /opt/tomcat
+
+sudo sh -c 'chmod +x /opt/tomcat/apache-tomcat-8.5.97/bin/*.sh'
+
+upload tomcat.service file into /home/ubuntu directory
+
+sudo mv /home/ubuntu/tomcat.service /etc/systemd/system
+
+verify service:
+	sudo systemctl daemon-reload
+	sudo systemctl start tomcat
+	sudo systemctl status tomcat
+	sudo systemctl stop tomcat
+	sudo systemctl restart tomcat
+	tail -f /opt/tomcat/apache-tomcat-8.5.97/logs/catalina.out
+	
+To allow traffic on port 8080:	
+	enable on aws portal
+		
+enable tomcat at startup:
+		sudo systemctl enable tomcat
+
+Mysql installation:
+		refer: https://stackoverflow.com/questions/62382968/install-mysql-5-6-on-ubuntu-20-04
+		wget https://downloads.mysql.com/archives/get/p/23/file/mysql-server_5.6.51-1debian9_amd64.deb-bundle.tar
+		tar -xvf mysql-server_5.6.51-1debian9_amd64.deb-bundle.tar
+		sudo dpkg -i *.deb
+
+		sudo apt install libaio1 libncurses5 libtinfo5
+		sudo apt --fix-broken install
+		
+		verify:
+			sudo systemctl start mysql
+			sudo systemctl status mysql
+			sudo systemctl stop mysql
+			sudo systemctl restart mysql
+		
+		
+		pass: 
+			grex1234
+		Connect:
+			mysql -u root -p
+		
+		script:
+			create database demo_db;
+			create database idpdb;
+			create database infexdb;
+			
+			mysql -u root -p demo_db < /home/ubuntu/grex-test-db.sql
+			mysql -u root -p idpdb < /home/ubuntu/idp-test-db.sql
+			mysql -u root -p infexdb < /home/ubuntu/infex-test-db.sql
+		config:
+			copy mysqld.cnf to location /etc/mysql/mysql.conf.d/ 
+
+Create own sighed certificate: 
+	keytool -genkey -alias tomcat -keyalg RSA -keystore mycertificate.cert
+	grex1234
+	
+
+			
+Usefull commands:	
+	Get list of ports: 	netstat -a | grep port
+	Get memory status:	top -c
+	get tomcat log : 	tail -f /opt/tomcat/apache-tomcat-8.5.97/logs/catalina.out
+	change permission:	chmod 777 filename
+	
+Firewall Changes:
+	sudo ufw status verbose
+	sudo ufw reload
+	sudo ufw enable
+	sudo ufw disable		
+
+	
