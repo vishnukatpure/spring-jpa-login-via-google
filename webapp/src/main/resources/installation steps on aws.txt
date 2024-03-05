@@ -4,7 +4,7 @@ INFEX: 3.6.245.170
 
 Ref: https://linuxize.com/post/how-to-install-tomcat-8-5-on-ubuntu-18-04/
 
-loggedin as root
+logged in as root
 	sudo -i
 
 Reboot Server:
@@ -106,4 +106,22 @@ Firewall Changes:
 	sudo ufw enable
 	sudo ufw disable		
 
+-----Install Nginx and forward port 80 request to any port
+apt install nginx --install
+sudo rm /etc/nginx/sites-enabled/default --delete default config
+sudo nano /etc/nginx/sites-available/configname --create new config and pase below in that file request forwarding to 8080
+
+server {
+	listen 80;
+	server_name demo.grexaim.com;
+
+	location / {
+		proxy_set_header   X-Forwarded-For $remote_addr;
+		proxy_set_header   Host $http_host;
+		proxy_pass         "http://127.0.0.1:8080";
+	}
+}
+
+sudo ln -s /etc/nginx/sites-available/configname /etc/nginx/sites-enabled/configname --symlink of configuration in sites-available folder
+sudo service nginx restart --restart nginx
 	
