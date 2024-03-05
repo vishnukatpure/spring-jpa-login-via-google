@@ -23,14 +23,14 @@
 		<maven.compiler.executable>false</maven.compiler.executable>
 
 		<!-- For Dependencies -->
-		<spring.framework>5.3.29</spring.framework>
-		<spring.security>5.8.6</spring.security>
-		<mysql.version>8.0.33</mysql.version>
+		<spring.framework>5.3.32</spring.framework>
+		<spring.security>5.8.10</spring.security>
 		<serializer.version>2.12.7.1</serializer.version>
 		<spring.data.jpa>2.3.0.RELEASE</spring.data.jpa>
 		<hibernate.manager>5.3.29.Final</hibernate.manager>
 		<Flyway.version>3.0</Flyway.version>
 		<jwt.version>0.11.5</jwt.version>
+		<mysql.version>8.0.33</mysql.version>
 	</properties>
 
 	<build>
@@ -73,13 +73,14 @@
 	</build>
 
 	<dependencies>
-		<!-- Mysql -->
+		<!-- Mysql library now manages by hibernate based on version -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
 		</dependency>
-
+ 		
+ 		
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>

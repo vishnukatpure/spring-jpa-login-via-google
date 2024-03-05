@@ -25,7 +25,7 @@ public class JwtUtils {
 
 	private static Logger logger = LogManager.getLogger(JwtUtils.class);
 	
-	private String jwtSecret = "======================BezKoder=Spring===========================";
+	private String jwtSecret = "=======================Spring=Security==========================";
 
 	private int jwtExpirationSecond = 300;// 5 minute
 	private int jwtExpirationMs = jwtExpirationSecond * 1000;

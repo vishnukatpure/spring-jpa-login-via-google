@@ -8,7 +8,7 @@ HTML, CSS, JSTL, MAVEN,
 Flyway-db Library
 
 # Flyway?
-Flyway library use to execute db scripts at the time of application running. It helps to migrate database. 
+Flyway library use to execute db scripts at the time of application start. It helps to migrate database. 
 
 # AOP
 AOP is an approach to programming that allows global properties of a program to determine how it is compiled into an executable program
@@ -59,3 +59,5 @@ Testing Method: GET
 	http://localhost:8080/spring-jpa-login-via-google/person/aop/testing/1 
 	http://localhost:8080/spring-jpa-login-via-google/person/aop/testing/1
 
+# Requirement 
+Tomcat 9.x require to run application
