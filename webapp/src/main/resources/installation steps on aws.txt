@@ -73,7 +73,7 @@ Mysql installation:
 		
 		
 		pass: 
-			grex1234
+			test1234
 		Connect:
 			mysql -u root -p
 		
@@ -90,7 +90,7 @@ Mysql installation:
 
 Create own sighed certificate: 
 	keytool -genkey -alias tomcat -keyalg RSA -keystore mycertificate.cert
-	grex1234
+	test1234
 	
 
 			
@@ -113,7 +113,7 @@ sudo nano /etc/nginx/sites-available/configname --create new config and pase bel
 
 server {
 	listen 80;
-	server_name demo.grexaim.com;
+	server_name *.com;
 
 	location / {
 		proxy_set_header   X-Forwarded-For $remote_addr;
