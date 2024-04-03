@@ -24,7 +24,7 @@ import io.jsonwebtoken.security.Keys;
 public class JwtUtils {
 
 	private static Logger logger = LogManager.getLogger(JwtUtils.class);
-	
+
 	private String jwtSecret = "=======================Spring=Security==========================";
 
 	private int jwtExpirationSecond = 300;// 5 minute
@@ -33,8 +33,11 @@ public class JwtUtils {
 	public String generateJwtToken(Authentication authentication) {
 		UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
 		Date expirationTime = new Date((new Date()).getTime() + jwtExpirationMs);
-		JwtBuilder builder = Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
-				.setExpiration(expirationTime).signWith(key(), SignatureAlgorithm.HS256);
+		JwtBuilder builder = Jwts.builder().claim("role", authentication.getAuthorities())
+				.subject((userPrincipal.getUsername()))
+				.issuedAt(new Date())
+				.expiration(expirationTime)
+				.signWith(key());
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty("token", builder.compact());
 		jsonObject.addProperty("token-expiry", expirationTime.toString());
@@ -47,12 +50,12 @@ public class JwtUtils {
 	}
 
 	public String getUserNameFromJwtToken(String token) {
-		return Jwts.parserBuilder().setSigningKey(key()).build().parseClaimsJws(token).getBody().getSubject();
+		return Jwts.parser().setSigningKey(key()).build().parseClaimsJws(token).getBody().getSubject();
 	}
 
 	public boolean validateJwtToken(String authToken) {
 		try {
-			Jwts.parserBuilder().setSigningKey(key()).build().parse(authToken);
+			Jwts.parser().setSigningKey(key()).build().parse(authToken);
 			return true;
 		} catch (MalformedJwtException e) {
 			logger.error("Invalid JWT token: {}", e.getMessage());

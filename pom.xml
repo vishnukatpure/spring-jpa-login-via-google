@@ -29,7 +29,7 @@
 		<spring.data.jpa>2.3.0.RELEASE</spring.data.jpa>
 		<hibernate.manager>5.3.29.Final</hibernate.manager>
 		<Flyway.version>3.0</Flyway.version>
-		<jwt.version>0.11.5</jwt.version>
+		<jwt.version>0.12.5</jwt.version>
 		<mysql.version>8.0.33</mysql.version>
 	</properties>
 

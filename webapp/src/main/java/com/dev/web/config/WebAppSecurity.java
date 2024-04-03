@@ -45,9 +45,9 @@ public class WebAppSecurity {
 		http.authorizeHttpRequests().antMatchers(STATIC_RESOURCES).permitAll();
 		http.authorizeHttpRequests().antMatchers(NON_SECURITY_API).permitAll();
 
-		http.authorizeHttpRequests().antMatchers("/**").hasAnyRole("ADMIN", "USER").and().formLogin()
-				.loginPage("/login").defaultSuccessUrl("/home").failureUrl("/login?error=true").permitAll().and()
-				.logout().logoutSuccessUrl("/login?logout=true").invalidateHttpSession(true).permitAll().and()
+		http.authorizeHttpRequests().antMatchers("/**").hasAnyRole("ADMIN", "USER").anyRequest().authenticated();
+		http.formLogin().loginPage("/login").defaultSuccessUrl("/home").failureUrl("/login?error=true").permitAll()
+				.and().logout().logoutSuccessUrl("/login?logout=true").invalidateHttpSession(true).permitAll().and()
 				.httpBasic();
 		http.csrf().disable();
 

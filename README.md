@@ -5,7 +5,9 @@ Java 1.8,
 Spring-core (5.3.29), Spring-MVC (5.3.29),Spring-Security (5.8.6), Spring AOP(Aspect Oriented Programming)(5.3.29),
 MySql, JPA(2.3.0.RELEASE),
 HTML, CSS, JSTL, MAVEN, 
-Flyway-db Library
+Flyway-db Library,
+Tomcat > 9.x,
+Jwt token (0.12.5)
 
 # Flyway?
 Flyway library use to execute db scripts at the time of application start. It helps to migrate database. 
@@ -58,6 +60,3 @@ Testing Method: GET
 
 	http://localhost:8080/spring-jpa-login-via-google/person/aop/testing/1 
 	http://localhost:8080/spring-jpa-login-via-google/person/aop/testing/1
-
-# Requirement 
-Tomcat 9.x require to run application
