@@ -10,12 +10,9 @@
 </head>
 <body>
 	homePage
-
+	<div>${token}</div>
 	<form name='login' action="logout" method='POST'>
 		<table>
-			<tr>
-				<td>${token}</td>
-			</tr>
 			<tr>
 				<td><input name="submit" type="submit" value="Logout" /></td>
 			</tr>

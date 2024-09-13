@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dev.core.controller.AbstractResource;
 import com.dev.core.utils.JwtUtils;
+import com.google.gson.JsonObject;
 
 @RestController
 public class LoginController extends AbstractResource {
@@ -29,8 +31,9 @@ public class LoginController extends AbstractResource {
 	}
 
 	@GetMapping(value = { "/home" })
+	@PreAuthorize("@authorizationService.hasRole('ROLE_ADMIN')")
 	public ModelAndView homePage() {
-		String token = jwtUtils.generateJwtToken(getAuthentication());
+		JsonObject token = jwtUtils.generateJwtToken(getAuthentication());
 		ModelAndView model = new ModelAndView();
 		model.addObject("token", token);
 		model.setViewName("home");
@@ -38,7 +41,7 @@ public class LoginController extends AbstractResource {
 	}
 	
 	@GetMapping(value = { "/get-token" })
-	public String getToken() {
+	public JsonObject getToken() {
 		return jwtUtils.generateJwtToken(getAuthentication());
 	}
 

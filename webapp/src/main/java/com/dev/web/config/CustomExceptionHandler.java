@@ -2,6 +2,7 @@ package com.dev.web.config;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -15,6 +16,7 @@ public class CustomExceptionHandler {
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ResponseDTO> handleException(Exception ex) {
+		ex.printStackTrace();
 		String msg = null;
 		StatusEnum status = StatusEnum.EXCEPTION_OCCIRED;
 		if (ex instanceof FormValidationException) {
@@ -26,6 +28,11 @@ public class CustomExceptionHandler {
 			msg = ex.getMessage();
 		}
 
+		if (ex instanceof AccessDeniedException) {
+			status = StatusEnum.ACCESS_DENIED;
+			msg = "You dont have permission";
+		}
+		
 		ResponseDTO dto = new ResponseDTO().status(status).message(msg);
 		return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(dto);
 	}

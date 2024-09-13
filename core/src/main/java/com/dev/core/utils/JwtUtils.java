@@ -1,7 +1,9 @@
 package com.dev.core.utils;
 
 import java.security.Key;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +17,6 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -30,19 +31,18 @@ public class JwtUtils {
 	private int jwtExpirationSecond = 300;// 5 minute
 	private int jwtExpirationMs = jwtExpirationSecond * 1000;
 
-	public String generateJwtToken(Authentication authentication) {
+	public JsonObject generateJwtToken(Authentication authentication) {
 		UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
 		Date expirationTime = new Date((new Date()).getTime() + jwtExpirationMs);
-		JwtBuilder builder = Jwts.builder().claim("role", authentication.getAuthorities())
-				.subject((userPrincipal.getUsername()))
-				.issuedAt(new Date())
-				.expiration(expirationTime)
-				.signWith(key());
+		List<String> roles = new ArrayList<String>();
+		authentication.getAuthorities().stream().forEach(e -> roles.add(e.getAuthority()));
+		JwtBuilder builder = Jwts.builder().claim("role", roles).subject((userPrincipal.getUsername()))
+				.issuedAt(new Date()).expiration(expirationTime).signWith(key());
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty("token", builder.compact());
 		jsonObject.addProperty("token-expiry", expirationTime.toString());
 		jsonObject.addProperty("token-type", "Bearer ");
-		return jsonObject.toString();
+		return jsonObject;
 	}
 
 	private Key key() {

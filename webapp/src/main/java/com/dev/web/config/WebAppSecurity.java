@@ -1,12 +1,12 @@
 package com.dev.web.config;
 
 import javax.servlet.Filter;
-import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,20 +14,30 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.dev.core.services.CustomUserDetailService;
+
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
+@EnableMethodSecurity(prePostEnabled = true)
 public class WebAppSecurity {
 
+	//@Autowired
+	//private DataSource dataSource;
+	
 	@Autowired
-	private DataSource dataSource;
+	private CustomUserDetailService customUserDetailService;
+	
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder authenticationMgr) throws Exception {
-		authenticationMgr.jdbcAuthentication().dataSource(dataSource)
-				.usersByUsernameQuery("select username, password, enabled  from users where username=?")
-				.authoritiesByUsernameQuery(
-						"SELECT username, r.role FROM users INNER JOIN user_authorities a ON users.id = a.id INNER JOIN roles r ON a.id=r.id where users.username=?")
-				.passwordEncoder(encoder());
+		authenticationMgr.userDetailsService(customUserDetailService).passwordEncoder(encoder());
+		/*
+		 * authenticationMgr.jdbcAuthentication().dataSource(dataSource)
+		 * .usersByUsernameQuery("select username, password, enabled  from users where username=?"
+		 * ) .authoritiesByUsernameQuery(
+		 * "SELECT username, r.role FROM users INNER JOIN user_authorities a ON users.id = a.id INNER JOIN roles r ON a.id=r.id where users.username=?"
+		 * ) .passwordEncoder(encoder());
+		 */
 	}
 
 	@Bean

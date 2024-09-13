@@ -28,6 +28,7 @@ public class Authorities extends EntityBase implements GrantedAuthority {
 		this.username = username;
 	}
 
+	@Override
 	public String getAuthority() {
 		return role.getRole();
 	}
