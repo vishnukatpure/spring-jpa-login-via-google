@@ -1,8 +1,8 @@
 # Login Via google
 
 # Technologies
-Java 1.8, 
-Spring-core (5.3.29), Spring-MVC (5.3.29),Spring-Security (5.8.6), Spring AOP(Aspect Oriented Programming)(5.3.29),
+Java 17, 
+Spring-core (5.3.39), Spring-MVC (5.3.39), Spring AOP(Aspect Oriented Programming)(5.3.39), Spring-Security (5.8.10)
 MySql, JPA(2.3.0.RELEASE),
 HTML, CSS, JSTL, MAVEN, 
 Flyway-db Library,

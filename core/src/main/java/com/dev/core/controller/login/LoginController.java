@@ -8,16 +8,17 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dev.core.controller.AbstractResource;
 import com.dev.core.utils.JwtUtils;
 import com.google.gson.JsonObject;
 
-@RestController
+@Controller
 public class LoginController extends AbstractResource {
 
 	@Autowired
@@ -39,10 +40,12 @@ public class LoginController extends AbstractResource {
 		model.setViewName("home");
 		return model;
 	}
-	
+
+	@ResponseBody
 	@GetMapping(value = { "/get-token" })
-	public JsonObject getToken() {
-		return jwtUtils.generateJwtToken(getAuthentication());
+	public String getToken() {
+		JsonObject obj = jwtUtils.generateJwtToken(getAuthentication());
+		return obj.toString();
 	}
 
 	@GetMapping(value = "/login")

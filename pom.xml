@@ -18,12 +18,12 @@
 		<!-- For build -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<org.apache.maven.plugins.version>2.3.2</org.apache.maven.plugins.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 		<maven.compiler.executable>false</maven.compiler.executable>
 
 		<!-- For Dependencies -->
-		<spring.framework>5.3.32</spring.framework>
+		<spring.framework>5.3.39</spring.framework>
 		<spring.security>5.8.10</spring.security>
 		<serializer.version>2.12.7.1</serializer.version>
 		<spring.data.jpa>2.3.0.RELEASE</spring.data.jpa>
@@ -127,12 +127,12 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
-			<version>1.7.0</version>
+			<version>1.9.22</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>1.7.0</version>
+			<version>1.9.22</version>
 		</dependency>
 
 		<!-- Spring JPA -->
